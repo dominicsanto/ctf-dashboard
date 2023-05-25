@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import TeamCard from './TeamCard';
+import axios from 'axios';
 
 const Dashboard = () => {
   const teams = [
@@ -7,58 +8,75 @@ const Dashboard = () => {
       name: 'Catch Me If You Can',
       firstChallenge: false,
       secondChallenge: false,
-      thirdChallenge: false
+      thirdChallenge: false,
+      fourthChallenge: false
     },
     {
       name: 'Hackberry Fin',
       firstChallenge: true,
       secondChallenge: false,
-      thirdChallenge: false
+      thirdChallenge: false,
+      fourthChallenge: false
     },
     {
       name: 'The Solo No Hopes',
       firstChallenge: true,
       secondChallenge: false,
-      thirdChallenge: true
+      thirdChallenge: true,
+      fourthChallenge: false
     },
     {
       name: 'Obi One Challenge',
       firstChallenge: false,
       secondChallenge: false,
-      thirdChallenge: true
+      thirdChallenge: true,
+      fourthChallenge: false
     },
     {
       name: 'Obi One Challenge',
       firstChallenge: false,
       secondChallenge: false,
-      thirdChallenge: true
+      thirdChallenge: true,
+      fourthChallenge: false
     },
     {
       name: 'Obi One Challenge',
       firstChallenge: false,
       secondChallenge: false,
-      thirdChallenge: true
+      thirdChallenge: true,
+      fourthChallenge: false
     },
     {
       name: 'Obi One Challenge',
       firstChallenge: false,
       secondChallenge: false,
-      thirdChallenge: true
+      thirdChallenge: true,
+      fourthChallenge: false
     },
   ]
 
+  const MINUTE_MS = 300000;
 
-  const MINUTE_MS = 60000;
+  const queryApi = () => {
+    const response = axios.post(
+      `/api/hook`,
+      {
+        centsAmount: "10100",
+        currencyCode: "zar",
+        merchantCode: 7996,
+        merchantName: "USkaka",
+        merchantCity: "Durban",
+        countryCode: "ZA"
+      }
+    )
+    console.log(response);
+  }
 
-  // const queryApi = () => {
-  //   console.log('queryApi');
-  // }
+  useEffect(() => {
+    queryApi();
+  }, []);
 
-  // useEffect(() => {
-  //   queryApi();
-  // }, []);
-
-  // setInterval(queryApi, MINUTE_MS);
+  setInterval(queryApi, MINUTE_MS);
 
   return ( <>
     <div className="relative">
